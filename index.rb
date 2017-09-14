@@ -36,21 +36,21 @@ post '/' do
   return handle_usage if command == 'help'
 
   Kernel.fork do
-  	current_time = now
-  	driver = start_driver
-  	switch_to_input_screen(driver)
+    current_time = now
+    driver = start_driver
+    switch_to_input_screen(driver)
 
-  	if command == 'hello'
-  	  # 出勤
-  	  input_work_field(driver, path: '//td[@id="grdXyw1100G-rc-0-6"]', time: current_time)
-  	  submit(driver)
-  	  send_message("おはようゴロ〜 #{current_time}", url: params[:response_url])
-  	elsif command == 'bye'
-  	  # 退勤
-  	  input_work_field(driver, path: '//td[@id="grdXyw1100G-rc-0-9"]', time: current_time)
-  	  submit(driver)
-  	  send_message("お疲れゴロ〜 #{current_time}", url: params[:response_url])
-  	end
+    if command == 'hello'
+      # 出勤
+      input_work_field(driver, path: '//td[@id="grdXyw1100G-rc-0-6"]', time: current_time)
+      submit(driver)
+      send_message("おはようゴロ〜 #{current_time}", url: params[:response_url])
+    elsif command == 'bye'
+      # 退勤
+      input_work_field(driver, path: '//td[@id="grdXyw1100G-rc-0-9"]', time: current_time)
+      submit(driver)
+      send_message("お疲れゴロ〜 #{current_time}", url: params[:response_url])
+    end
   end
 
   send_message('...ゴロ〜', url: params[:response_url])
