@@ -1,7 +1,6 @@
 require 'bundler'
 Bundler.require
 
-require 'dotenv/load'
 require 'json'
 require 'net/http'
 require 'uri'
@@ -38,20 +37,20 @@ post '/' do
 
   Kernel.fork do
   	current_time = now
-	  driver = start_driver
-	  switch_to_input_screen(driver)
+  	driver = start_driver
+  	switch_to_input_screen(driver)
 
-	  if command == 'hello'
-	  	# 出勤
-	    input_work_field(driver, path: '//td[@id="grdXyw1100G-rc-0-6"]', time: current_time)
-	    submit(driver)
-	  	send_message("おはようゴロ〜 #{current_time}", url: params[:response_url])
-	  elsif command == 'bye'
-	  	# 退勤
-	    input_work_field(driver, path: '//td[@id="grdXyw1100G-rc-0-9"]', time: current_time)
-	    submit(driver)
-	  	send_message("お疲れゴロ〜 #{current_time}", url: params[:response_url])
-	  end
+  	if command == 'hello'
+  	  # 出勤
+  	  input_work_field(driver, path: '//td[@id="grdXyw1100G-rc-0-6"]', time: current_time)
+  	  submit(driver)
+  	  send_message("おはようゴロ〜 #{current_time}", url: params[:response_url])
+  	elsif command == 'bye'
+  	  # 退勤
+  	  input_work_field(driver, path: '//td[@id="grdXyw1100G-rc-0-9"]', time: current_time)
+  	  submit(driver)
+  	  send_message("お疲れゴロ〜 #{current_time}", url: params[:response_url])
+  	end
   end
 
   send_message('...ゴロ〜', url: params[:response_url])
@@ -73,11 +72,11 @@ end
 # ドライバの起動
 def start_driver
 	chrome_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome()
-	Selenium::WebDriver.for(
-		:remote, 
-		:url => 'http://hub:4444/wd/hub', 
-		:desired_capabilities => chrome_capabilities
-	)
+  Selenium::WebDriver.for(
+    :remote,
+    :url => 'http://hub:4444/wd/hub',
+    :desired_capabilities => chrome_capabilities
+  )
 end
 
 # 勤務入力画面に遷移
@@ -114,7 +113,7 @@ end
 
 # 登録処理
 def submit(driver)
-	# 登録処理
+  # 登録処理
   driver.find_element(:xpath, '//input[@name="regbutton"]').click
   # ドライバの終了
   driver.quit
@@ -160,10 +159,10 @@ end
 # 使用方法
 def handle_usage
   send_message(<<~EOS)
-  	使い方ゴロ〜:
+    使い方ゴロ〜:
 
-  	/goron hello - 出勤時間の入力
-  	/goron bye   - 退勤時間の入力
+    /goron hello - 出勤時間の入力
+    /goron bye   - 退勤時間の入力
   EOS
 end
 

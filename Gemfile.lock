@@ -3,7 +3,6 @@ GEM
   specs:
     childprocess (0.7.1)
       ffi (~> 1.0, >= 1.0.11)
-    dotenv (2.2.1)
     ffi (1.9.18)
     mustermann (1.0.1)
     rack (2.0.3)
@@ -26,7 +25,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dotenv
   selenium-webdriver
   sinatra
 
