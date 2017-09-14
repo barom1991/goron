@@ -1,0 +1,37 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    childprocess (0.7.1)
+      ffi (~> 1.0, >= 1.0.11)
+    dotenv (2.2.1)
+    ffi (1.9.18)
+    mustermann (1.0.1)
+    rack (2.0.3)
+    rack-protection (2.0.0)
+      rack
+    rubyzip (1.2.1)
+    selenium-webdriver (3.4.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
+    sinatra (2.0.0)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0)
+      tilt (~> 2.0)
+    tilt (2.0.8)
+    websocket (1.2.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  dotenv
+  selenium-webdriver
+  sinatra
+
+RUBY VERSION
+   ruby 2.4.1p111
+
+BUNDLED WITH
+   1.15.4

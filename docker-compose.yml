@@ -1,0 +1,39 @@
+version: '3'
+services:
+  bot:
+    image: ruby:2.4.1
+    command: "sh -c 'bundle install && bundle exec rackup -o $$HOST -p $$PORT'"
+    working_dir: /app
+    tty: true
+    stdin_open: true
+    env_file: .env
+    environment:
+      - LANG=C.UTF-8
+      - LC_ALL=C.UTF-8
+      - TZ=Asia/Tokyo
+      - BUNDLE_JOBS=4
+      - BUNDLE_PATH=/app/vendor/bundle
+      - PORT=9292
+      - HOST=0.0.0.0
+      - RACK_ENV=development
+    volumes:
+      - .:/app
+    ports:
+      - 9292:9292
+      
+  hub:
+    image: selenium/hub:3.0.1-carbon
+    ports:
+      - 4444:4444
+
+  chrome:
+    image: selenium/node-chrome-debug:3.0.1-carbon
+    ports:
+      - 15900:5900
+    depends_on:
+      - hub
+    environment:
+      - no_proxy=localhost
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_ENV_no_proxy=localhost
