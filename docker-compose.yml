@@ -15,7 +15,7 @@ services:
       - BUNDLE_PATH=/app/vendor/bundle
       - PORT=9292
       - HOST=0.0.0.0
-      - RACK_ENV=development
+      - RACK_ENV=production
     volumes:
       - .:/app
     ports:
